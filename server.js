@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
-
 const PORT = 5050;
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -43,5 +41,5 @@ async function startServer() {
         console.error(err);
     }
 }
-
 startServer();
+
