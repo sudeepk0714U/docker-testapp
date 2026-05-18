@@ -12,7 +12,7 @@ const client = new MongoClient(MONGO_URL);
 async function startServer() {
     try {
         await client.connect();
-        console.log("Connected successfully to MongoDB");
+        console.log("Connectedd successfully to MongoDB");
 
         const db = client.db("apnacollege-db");
 
