@@ -1,0 +1,26 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["Docker CI/CD"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull Docker Image
+        run: sudo docker pull sudeepkumar116/testapp:latest
+
+      - name: Delete Old Container
+        run: sudo docker rm -f testapp-container || true
+
+      - name: Run Docker Container
+        run: |
+          sudo docker run -d \
+          --name testapp-container \
+          --network mongo-network \
+          -p 5050:5050 \
+          sudeepkumar116/testapp:latest
